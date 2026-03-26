@@ -26,6 +26,13 @@
  * ```
  */
 
+import { createApp } from 'vue';
+
+import App from './App.vue';
+
+createApp(App).mount('#app');
+
+
 import './index.css';
 
 console.log(
