@@ -27,14 +27,27 @@
  */
 
 import { createApp } from 'vue';
-
+import { createRouter, createMemoryHistory } from 'vue-router'
 import App from './App.vue';
-
-createApp(App).mount('#app');
-
-
 import './index.css';
 
-console.log(
-  '👋 This message is being logged by "renderer.ts", included via Vite',
-);
+import Conversation from './views/Conversation.vue';
+import Home from './views/Home.vue';
+import Settings from './views/Settings.vue';
+
+
+const routes = [
+  { path: '/', component: Home },
+  { path: '/conversation/:id', component: Conversation },
+  { path: '/settings', component: Settings },
+];
+
+const router = createRouter({
+  history: createMemoryHistory(),
+  routes,
+});
+
+createApp(App).use(router).mount('#app');
+
+
+
