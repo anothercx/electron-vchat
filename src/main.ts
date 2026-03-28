@@ -1,6 +1,7 @@
 import { app, BrowserWindow } from 'electron';
 import path from 'node:path';
 import started from 'electron-squirrel-startup';
+import { aliBailianLLMStream, aliBailianReadFile, aliBailianReadImage } from './llm-temp';
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (started) {
@@ -28,6 +29,8 @@ const createWindow = () => {
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
+
+  aliBailianReadFile();
 };
 
 // This method will be called when Electron has finished
