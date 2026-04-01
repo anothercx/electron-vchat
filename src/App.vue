@@ -25,12 +25,22 @@
 </template>
 
 <script setup lang="ts">
-import { Icon } from "@iconify/vue";
-import ConversationList from "./components/ConversationList.vue";
-import Button from "./components/Button.vue";
-
 import { RouterView, RouterLink } from "vue-router";
-import { conversations } from "./testData";
+import { onMounted, ref } from "vue";
+
+import { db, initProviders } from "./db";
+
+import Button from "./components/Button.vue";
+import ConversationList from "./components/ConversationList.vue";
+
+import { ConversationProps } from "./types";
+
+const conversations = ref<ConversationProps[]>([]);
+
+onMounted(async () => {
+  await initProviders();
+  conversations.value = await db.conversations.toArray();
+});
 </script>
 
 <style scoped></style>
